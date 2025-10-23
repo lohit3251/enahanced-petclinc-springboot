@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
-
-      
+        stage('Checkout from GIT') {      
             steps {
-                echo 'Hello World'
+                git branch:'prod', url:'https://github.com/lohit3251/enahanced-petclinc-springboot.git'
+
             }
         }
     }
