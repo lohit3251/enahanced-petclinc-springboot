@@ -1,10 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout from GIT') {      
+        stage('Checkout FROM GIT') {
             steps {
-                git branch:'prod', url:'https://github.com/lohit3251/enahanced-petclinc-springboot.git'
-
+                git branch: 'prod' , url: 'https://github.com/bkrrajmali/enahanced-petclinc-springboot.git'
+        }
+      }
+        stage('Compile with Maven ') {
+            steps {
+                sh 'mvn compile'
             }
         }
     }
