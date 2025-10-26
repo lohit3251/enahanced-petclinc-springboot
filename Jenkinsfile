@@ -43,8 +43,8 @@ pipeline {
                 withSonarQubeEnv('sonarserver') {
                     sh '''${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.organization=lohit3251 \
-                    -Dsonar.projectName=springbootjava_app \
-                    -Dsonar.projectKey=springbootjava_app \
+                    -Dsonar.projectName=springbootjava_app01 \
+                    -Dsonar.projectKey=springbootjava_app01 \
                     -Dsonar.java.binaries=.
                   '''
                 }
