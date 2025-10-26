@@ -4,9 +4,7 @@ pipeline {
         maven 'mymaven'
     }
 
-    tools {
-        maven 'mymaven'
-    }
+    
     /*environment{
         IMAGE_NAME = 'springbootapp'
         IMAGE_TAG = 'latest'
