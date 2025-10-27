@@ -12,8 +12,8 @@ pipeline {
         ACR_NAME = 'rajeshRegistry'
         ACR_LOGIN_SERVER = 'rajeshregistry.azurecr.io'
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
-        RG              = "socgen"
-        NAME            = "myAKSCluster"
+        RG              = "lohitRG"
+        NAME            = "lohitakscluster"
     }
 
     stages {
