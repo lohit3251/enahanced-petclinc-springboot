@@ -9,8 +9,8 @@ pipeline {
         IMAGE_NAME = 'springbootapp'
         IMAGE_TAG = 'latest'
         TENANT_ID ='0546ab6c-c9d8-47da-a5e7-a552f6bfceee'
-        ACR_NAME = 'springbootdockerreg'
-        ACR_LOGIN_SERVER = 'springbootdockerreg.azurecr.io'
+        ACR_NAME = 'rajeshRegistry'
+        ACR_LOGIN_SERVER = 'rajeshregistry.azurecr.io'
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
         RG              = "socgen"
         NAME            = "myAKSCluster"
@@ -95,32 +95,32 @@ pipeline {
                 }
             }
         }
-        // stage('Azure Login TO AKS') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'azure-acr-spn', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
-        //             script {
-        //                 echo "Azure Login to AKS"
-        //                 sh '''
-        //                 az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
-        //                 az aks get-credentials --resource-group $RG --name $NAME --overwrite-existing
-        //                 '''
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('Deploy to AKS') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'azure-acr-spn', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
-        //             script {
-        //                 echo "Azure Login to AKS"
-        //                 sh '''
-        //                 az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
-        //                 kubectl apply -f k8s/sprinboot-deployment.yaml
-        //                 '''
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Azure Login TO AKS') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'azure-acr-spn', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
+                    script {
+                        echo "Azure Login to AKS"
+                        sh '''
+                        az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                        az aks get-credentials --resource-group $RG --name $NAME --overwrite-existing
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Deploy to AKS') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'azure-acr-spn', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
+                    script {
+                        echo "Azure Login to AKS"
+                        sh '''
+                        az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                        kubectl apply -f k8s/sprinboot-deployment.yaml
+                        '''
+                    }
+                }
+            }
+        }
 
     }
 }
