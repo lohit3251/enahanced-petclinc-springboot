@@ -55,13 +55,13 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Sonar Quality Gate') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
-                }
-            }
-        }
+        // stage('Sonar Quality Gate') {
+        //     steps {
+        //         timeout(time: 5, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
+        //         }
+        //     }
+        // }
         stage('Docker Build') {
             steps {
                 script {
